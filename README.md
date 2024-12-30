@@ -29,7 +29,9 @@ This is the frontend of the Task Manager application. It provides a user-friendl
    npm install
 3. Create a .env file and add the following variable:
    ```bash
-   REACT_APP_API_URL=http://localhost:5000/api
+   REACT_APP_API_URL=https://task-manager-backend-22gu.onrender.com
+   ```
+   - If you will run the app in local environment then use `http://localhost:5000/api` as a value
 4. Start the application:
    ```bash
    npm start
