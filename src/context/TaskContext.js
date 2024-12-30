@@ -10,9 +10,11 @@ export const TaskProvider = ({ children }) => {
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  const apiUrl = process.env.REACT_APP_API_URL;
+
   const getTasks = async () => {
     try {
-      const response = await axios.get("/api/tasks");
+      const response = await axios.get(`${apiUrl}/api/tasks`);
       setTasks(response.data);
     } catch (error) {
       console.error("Error fetching tasks:", error);
@@ -23,7 +25,7 @@ export const TaskProvider = ({ children }) => {
   const fetchFilteredTasks = async (status) => {
     setLoading(true);
     try {
-      const response = await axios.get(`/api/tasks?status=${status}`);
+      const response = await axios.get(`${apiUrl}/api/tasks?status=${status}`);
       setTasks(response.data);
     } catch (error) {
       console.error("Error fetching tasks:", error);
@@ -35,7 +37,7 @@ export const TaskProvider = ({ children }) => {
 
   const addTask = async (task) => {
     try {
-      const response = await axios.post("/api/tasks", task);
+      const response = await axios.post(`${apiUrl}/api/tasks`, task);
       setTasks((prevTasks) => [...prevTasks, response.data]);
       toast.success("Task added successfully!");
       //throw new Error("Failed to add task."); //force the error
@@ -47,7 +49,10 @@ export const TaskProvider = ({ children }) => {
 
   const updateTask = async (taskId, updatedFields) => {
     try {
-      const response = await axios.put(`/api/tasks/${taskId}`, updatedFields);
+      const response = await axios.put(
+        `${apiUrl}/api/tasks/${taskId}`,
+        updatedFields,
+      );
       setTasks((prevTasks) =>
         prevTasks.map((task) =>
           task._id === taskId ? { ...task, ...response.data } : task,
@@ -62,7 +67,7 @@ export const TaskProvider = ({ children }) => {
 
   const deleteTask = async (taskId) => {
     try {
-      await axios.delete(`/api/tasks/${taskId}`);
+      await axios.delete(`${apiUrl}/api/tasks/${taskId}`);
       setTasks(tasks.filter((task) => task._id !== taskId));
       toast.success("Task deleted successfully!");
     } catch (error) {
