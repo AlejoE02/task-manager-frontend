@@ -22,7 +22,7 @@ This is the frontend of the Task Manager application. It provides a user-friendl
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone <https://github.com/AlejoE02/task-manager-frontend.git>
    cd task-manager-frontend
 2. Install dependencies
    ```bash
@@ -36,8 +36,8 @@ This is the frontend of the Task Manager application. It provides a user-friendl
 5. The application will be available at `http://localhost:3000`.
 
 ## Development Scripts
-`npm start`: Starts the server
-`npm build`: Builds the application for production.
+  - `npm start`: Starts the server
+  - `npm build`: Builds the application for production.
 
 ## License
 
